@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS Sprite</title>
+    <style>
+        .showBox{
+        	height:480px;
+        	width:480px;
+        	border:5px solid rgb(255, 250, 232);
+        	
+            margin:0 auto;
+            background: url(img/1.jpg) no-repeat 0px 0px;
+        }
+        .btnBox{
+        	margin-top:10px;
+        	text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="show" class="showBox"></div>
+    <div class="btnBox">
+    	<input type="button" id="startBtn" value="开始" />
+    	<input type="button" id="restart" value="重新开始"/>
+    	<input type="button" id="stopBtn" value="停止"/>
+    </div>
+    
+    <script>
+    	//BOM:Brower Object Model
+    	//DOM:Document Object Model
+        var sBox=document.getElementById("show");
+		var sBtn=document.getElementById("startBtn");
+		var rBth=document.getElementById("restart");
+		var spBtn=document.getElementById("stopBtn");
+		
+		sBtn.addEventListener('click',playImg);
+		rBth.addEventListener('click',restartImg);
+		spBtn.addEventListener('click',stop);
+		
+		rBth.setAttribute('disabled',true);
+		spBtn.setAttribute('disabled',true);
+		
+		var sVertical=0;
+		var t;
+		var flag=0;
+		
+		function playImg(){
+			console.log('run')
+			//直角坐标系，而且左上方是零点
+			sVertical-=480;
+			//px需要用字符串添加
+			sBox.style.backgroundPositionY=sVertical+'px';
+			console.log(sBox.style.backgroundPositionY)
+			sBtn.setAttribute('disabled',true);
+			//setAttribute无法覆盖前者，只用用removeXXX清除
+			rBth.removeAttribute('disabled',false);
+			spBtn.removeAttribute('disabled',false);
+						
+			if(flag==0){
+				console.log('hello')
+                t=setInterval(playImg, 100);
+				flag=1;
+			}
+		}
+		function restartImg(){
+			sVertical=0;
+			sBox.style.backgroundPositionY=sVertical+'px';
+			playImg();
+		}
+		
+		function stop(){
+			clearInterval(t);
+			flag=0;
+		}
+		
+        
+    </script>
+</body>
+</html>

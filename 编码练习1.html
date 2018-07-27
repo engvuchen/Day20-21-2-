@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>编码练习1</title>
+	</head>
+	<body>
+		<input id="name" type="text" onkeydown='enterPress(),escPress()'>    
+		<button id="submit-btn" >Submit</button>
+		
+		<script>
+			document.getElementById("submit-btn").onclick=function(){
+				//input type=text中的文本为value
+				console.log(document.getElementById("name").value);
+			}
+			function enterPress(){
+				if(event.keyCode==13){
+				console.log(document.getElementById("name").value);
+				}
+			}
+			
+			function escPress(){
+				if(event.keyCode==27||event.keyCode==96){
+					document.getElementById("name").value=''
+				}
+			}
+		</script>
+	</body>
+</html>

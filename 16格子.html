@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>16格子</title>
+		<style>
+			div{
+				display:inline-block;
+				width:20%;
+				height:100px;
+				background:transparent;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script>
+			var divs=document.getElementsByTagName("div")
+//			console.log(divs)
+			for(var i=0;i<divs.length;i++){
+				(function(){
+					var temp=i;
+					console.log(Math.random()*255)
+					divs[i].onclick=function(){
+						var rndCol = 'rgb(' + Math.random()*255 + ',' + Math.random()*255 + ',' + Math.random()*255 + ')';
+						divs[temp].style.backgroundColor=rndCol;
+					}
+				})();
+			}	
+		</script>
+	</body>
+</html>

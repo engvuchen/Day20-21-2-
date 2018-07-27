@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>仅有一个计时器被启动</title>
+	</head>
+	<body>
+		<p>
+			<input type="button" value="启动计时器" id="sCount"/>
+			<input type="text" id="timeShow"/>
+			<input type="button" value="停止计时器" id="stCount"/>
+		</p>
+		<input type="text" id="fShow"/>
+		
+		<script>
+			var x=0;
+			var flag=0;
+			var t;
+			
+			var sCount1=document.getElementById("sCount");
+			sCount1.addEventListener('click',startCount);
+			sCount1.addEventListener('click',flagShow);
+
+			var stCount1=document.getElementById("stCount");
+			stCount1.addEventListener('click',stopCount);
+			stCount1.addEventListener('click',flagShow);
+			
+			function startCount(){
+				document.getElementById("timeShow").value=x;
+				x+=1;
+				t=setTimeout("startCount()",1000);
+				flag=1;
+
+				if(flag==0){
+					console.log('hello');
+					startCount();
+				}else if(flag==1){
+					document.getElementById("fShow").value=flag;
+					console.log("取消本次点击");
+				}
+			}
+			
+			function stopCount(){
+				clearTimeout(t);
+				flag=0;
+			}
+			
+			function flagShow(){
+				document.getElementById("fShow").value=flag;
+			}
+		</script>
+	</body>
+</html>
